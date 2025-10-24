@@ -1,4 +1,4 @@
-const funcModel = require('../models/clienteModel');
+const funcModel = require('../models/clienteModels.js');
 
 const path = require('path');
 

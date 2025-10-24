@@ -1,4 +1,12 @@
 import mysql from 'mysql2';
+import dotenv from 'dotenv';
+import {fileURLToPath} from 'url';
+import path from 'path';
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, '../../api/.env') })
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
@@ -8,9 +16,9 @@ const connection = mysql.createConnection({
   port: process.env.DB_PORT
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.error('Erro ao conectar ao MySQL:', err);
+connection.connect((erro) => {
+  if (erro) {
+    console.error('Erro ao conectar ao MySQL:', erro);
     return;
   }
   console.log('✅ Conectado ao MySQL com sucesso!');

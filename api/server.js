@@ -1,10 +1,12 @@
- const app = require('./src/app');
- const PORT = process.env.PORT || 3000;
- const clienteRoute = require('./src/routes/clienteRoute')
+import app from '../src/app.js';
+import dotenv from 'dotenv';
 
- app.use('/', clientesRoute);
+dotenv.config();
 
- app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta http://localhost:${PORT}`);
- });
+console.log('🔍 Variáveis carregadas:', process.env.DB_USER, process.env.DB_PASSWORD);
 
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
+});

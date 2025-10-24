@@ -2,23 +2,22 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Funcionários</title>
+  <title>Novo Cliente</title>
 </head>
 <body>
-  <h1>Acesso de funcionários</h1>
+  <h1>Cadastrar Novo Cliente</h1>
 
   <form action="/clientes/cadastroCli" method="POST">
-    <label>Email:</label>
+    <label>Nome:</label>
     <input type="text" name="nome" required><br>
 
-    <button type="submit">Entrar</button>
-
-    <label>Senha:</label>
+    <label>Email:</label>
     <input type="email" name="email" required><br>
 
-  <a href=>Não tem acesso ainda? Clique aqui!</a>
+    <label>Telefone:</label>
+    <input type="telefone" name="telefone" required><br>
 
-    
+    <button type="submit">Salvar</button>
   </form>
 
   <a href="/">Voltar</a>

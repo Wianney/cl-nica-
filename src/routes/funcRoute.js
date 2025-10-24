@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 
-const FuncController = require('../controllers/funcController');
+const FuncController = require('../controllers/funcController.js');
 
 router.get('/createFunc', (req,res) => {
     res.send(`

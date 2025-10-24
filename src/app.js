@@ -1,26 +1,42 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import clienteRoute from './src/routes/clienteRoute.js';
-import funcRoute from './src/routes/funcRoute.js';
+import methodOverride from 'method-override';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const express = require('express');
+import clienteRoute from './routes/clienteRoutes.js';
+import funcRoute from './routes/funcRoute.js';
+import usuarioRoute from './routes/usuarioRoute.js';
 
+
+dotenv.config();
 const app = express();
 
-const methodOverride = require('method-override');
+// Corrige __dirname em ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+// Configurações básicas
 app.use(methodOverride('_method'));
-
-const path = require('path');
 app.use(express.static(path.join(__dirname, 'view')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use(express.join());
-app.use(express.urlencoded({extended: true}));
-
-const clienteRoute = require('./routes/clienteRoute');
+// Rotas
 app.use('/clientes', clienteRoute);
 
-const funcRoute = require('.routes/funcRoute');
-app.use('/funcs', funcRoute);
+app.use('/usuarios', usuarioRoute);
 
- module.exports = app;
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
+
+app.get('/', (req, res) => {
+ res.sendFile(path.join(__dirname, 'views', 'index.ejs'));
+});
+
+export default app;
